@@ -15,107 +15,78 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; }
-
-    .outer { padding: clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 4vw, 1.5rem); display: flex; flex-direction: column; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); max-width: 760px; margin: 0 auto; }
-
-    /* CARD */
-    .card-wrap {
-      width: 100%; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 5vw, 2.5rem);
-      display: flex; flex-direction: column; gap: 1.25rem;
-      min-height: clamp(160px, 25vw, 220px); justify-content: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    }
-    .badge-row { display: flex; justify-content: center; }
-    .category-badge {
-      font-size: clamp(9px, 1.8vw, 11px); font-weight: 900; text-transform: uppercase;
-      letter-spacing: 0.15em; padding: 5px 14px; border-radius: 30px; display: inline-block;
-    }
-    .strip-row { display: flex; align-items: center; width: 100%; }
-    .label { font-size: clamp(16px, 4vw, 24px); font-weight: 800; white-space: nowrap; flex-shrink: 0; color: var(--text); }
-    .dots { flex: 1; margin: 0 clamp(8px, 2vw, 18px); border-bottom: 3px dotted #444; align-self: center; position: relative; top: 5px; min-width: 20px; }
-    .placeholder { text-align: center; color: var(--subtext); font-weight: 500; font-size: clamp(13px, 2.5vw, 15px); }
-
-    /* BUTTONS */
-    .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--subtext); text-align: center; width: 100%; }
-    .btn-row { display: flex; gap: clamp(6px, 1.5vw, 10px); justify-content: center; flex-wrap: wrap; width: 100%; }
-    .btn {
-      font-size: clamp(12px, 2.2vw, 14px); font-weight: 700;
-      padding: clamp(9px, 2vw, 12px) clamp(12px, 2.5vw, 18px);
-      border-radius: 10px; border: none; cursor: pointer;
-      transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
-      color: #fff; flex: 1 1 auto; min-width: clamp(80px, 18vw, 110px); max-width: 180px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.35);
-      line-height: 1.2; text-align: center;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.5); }
-    .btn:active { transform: scale(0.96); opacity: 0.85; }
-
-    /* Button colors */
-    .btn-official  { background: linear-gradient(135deg, #b07d2e, #7a5010); }
-    .btn-music     { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
-    .btn-transport { background: linear-gradient(135deg, #1d6fa4, #0c3a5e); }
-    .btn-food      { background: linear-gradient(135deg, #0e8c5a, #065038); }
-    .btn-politics  { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
-    .btn-tv        { background: linear-gradient(135deg, #d97706, #92400e); }
-    .btn-gaming    { background: linear-gradient(135deg, #475569, #1e293b); }
-    .btn-domestic  { background: linear-gradient(135deg, #b45309, #78350f); }
-    .btn-grab      { background: linear-gradient(135deg, #64748b, #334155); }
-    .btn-favs      { background: linear-gradient(135deg, #db2777, #831843); }
-
-    .counter { font-size: clamp(11px, 2vw, 13px); color: var(--subtext); text-align: center; }
-
-    /* RULES */
-    .rules-wrap {
-      width: 100%; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-      display: flex; flex-direction: column; gap: 1rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    .rules-title { font-size: clamp(14px, 3vw, 18px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); text-align: center; margin-bottom: 0.5rem; }
-    .rules-text { font-size: clamp(13px, 2.5vw, 15px); line-height: 1.65; color: #aaa; }
-    .step-num { font-weight: 800; color: var(--text); }
-    .time-box { background: #111; padding: 1rem; border-radius: 10px; text-align: center; font-size: clamp(12px, 2.2vw, 14px); margin-top: 0.5rem; border: 1px solid var(--border); color: #aaa; }
-    .time-title { font-weight: 700; color: var(--text); margin-bottom: 0.5rem; display: block; }
+    .outer { padding: clamp(1rem,4vw,2.5rem) clamp(0.75rem,4vw,1.5rem); display: flex; flex-direction: column; align-items: center; gap: clamp(1rem,3vw,1.75rem); max-width: 760px; margin: 0 auto; }
+    .card-wrap { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(2rem,6vw,3.5rem) clamp(1.25rem,5vw,2.5rem); display:flex; flex-direction:column; gap:1.25rem; min-height:clamp(160px,25vw,220px); justify-content:center; box-shadow:0 8px 32px rgba(0,0,0,.5); }
+    .badge-row { display:flex; justify-content:center; }
+    .category-badge { font-size:clamp(9px,1.8vw,11px); font-weight:900; text-transform:uppercase; letter-spacing:.15em; padding:5px 14px; border-radius:30px; display:inline-block; }
+    .strip-row { display:flex; align-items:center; width:100%; }
+    .label { font-size:clamp(16px,4vw,24px); font-weight:800; white-space:nowrap; flex-shrink:0; color:var(--text); }
+    .dots { flex:1; margin:0 clamp(8px,2vw,18px); border-bottom:3px dotted #444; align-self:center; position:relative; top:5px; min-width:20px; }
+    .placeholder { text-align:center; color:var(--subtext); font-weight:500; font-size:clamp(13px,2.5vw,15px); }
+    .section-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--subtext); text-align:center; width:100%; }
+    .btn-row { display:flex; gap:clamp(6px,1.5vw,10px); justify-content:center; flex-wrap:wrap; width:100%; }
+    .btn { font-size:clamp(12px,2.2vw,14px); font-weight:700; padding:clamp(9px,2vw,12px) clamp(12px,2.5vw,18px); border-radius:10px; border:none; cursor:pointer; transition:transform .15s,opacity .15s,box-shadow .15s; color:#fff; flex:1 1 auto; min-width:clamp(80px,18vw,110px); max-width:180px; text-shadow:0 1px 2px rgba(0,0,0,.4); box-shadow:0 3px 10px rgba(0,0,0,.35); line-height:1.2; text-align:center; }
+    .btn:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.5); }
+    .btn:active { transform:scale(.96); opacity:.85; }
+    .btn-official  { background:linear-gradient(135deg,#b07d2e,#7a5010); }
+    .btn-music     { background:linear-gradient(135deg,#7c3aed,#4c1d95); }
+    .btn-transport { background:linear-gradient(135deg,#1d6fa4,#0c3a5e); }
+    .btn-food      { background:linear-gradient(135deg,#0e8c5a,#065038); }
+    .btn-politics  { background:linear-gradient(135deg,#2563eb,#1e3a8a); }
+    .btn-tv        { background:linear-gradient(135deg,#d97706,#92400e); }
+    .btn-gaming    { background:linear-gradient(135deg,#475569,#1e293b); }
+    .btn-domestic  { background:linear-gradient(135deg,#b45309,#78350f); }
+    .btn-grab      { background:linear-gradient(135deg,#64748b,#334155); }
+    .btn-favs      { background:linear-gradient(135deg,#db2777,#831843); }
+    .btn-dark      { background:linear-gradient(135deg,#3f0f0f,#1a0000); border:1px solid #5a1a1a; }
+    .btn-meme      { background:linear-gradient(135deg,#065f46,#022c22); }
+    .btn-relationships { background:linear-gradient(135deg,#be185d,#6d0f38); }
+    .btn-money     { background:linear-gradient(135deg,#15803d,#14532d); }
+    .btn-aging     { background:linear-gradient(135deg,#78350f,#3b1505); }
+    .counter { font-size:clamp(11px,2vw,13px); color:var(--subtext); text-align:center; }
+    .rules-wrap { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(1.5rem,4vw,2.5rem) clamp(1rem,4vw,2rem); display:flex; flex-direction:column; gap:1rem; box-shadow:0 4px 20px rgba(0,0,0,.4); }
+    .rules-title { font-size:clamp(14px,3vw,18px); font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--text); text-align:center; margin-bottom:.5rem; }
+    .rules-text { font-size:clamp(13px,2.5vw,15px); line-height:1.65; color:#aaa; }
+    .step-num { font-weight:800; color:var(--text); }
+    .time-box { background:#111; padding:1rem; border-radius:10px; text-align:center; font-size:clamp(12px,2.2vw,14px); margin-top:.5rem; border:1px solid var(--border); color:#aaa; }
+    .time-title { font-weight:700; color:var(--text); margin-bottom:.5rem; display:block; }
   </style>
 </head>
 <body>
 <div class="outer">
-
-  <!-- CARD -->
   <div class="card-wrap">
     <div class="badge-row" id="badge-row"></div>
-    <div id="strip-container">
-      <div class="placeholder">Ready to play. Pick a deck below.</div>
-    </div>
+    <div id="strip-container"><div class="placeholder">Ready to play. Pick a deck below.</div></div>
   </div>
 
-  <!-- OFFICIAL -->
   <div class="section-label">Official Deck</div>
   <div class="btn-row">
     <button class="btn btn-official" onclick="draw('official')">🃏 Draw Official</button>
   </div>
 
-  <!-- CUSTOM BY CATEGORY -->
   <div class="section-label">Custom Decks</div>
   <div class="btn-row">
-    <button class="btn btn-music"     onclick="draw('music')">🎸 Music</button>
-    <button class="btn btn-transport" onclick="draw('transport')">🚗 Transport</button>
-    <button class="btn btn-food"      onclick="draw('food')">🍔 Food</button>
-    <button class="btn btn-politics"  onclick="draw('politics')">🏛️ Politics</button>
-    <button class="btn btn-tv"        onclick="draw('tv')">📺 TV & Places</button>
+    <button class="btn btn-music"         onclick="draw('music')">🎸 Music</button>
+    <button class="btn btn-transport"     onclick="draw('transport')">🚗 Transport</button>
+    <button class="btn btn-food"          onclick="draw('food')">🍔 Food</button>
+    <button class="btn btn-politics"      onclick="draw('politics')">🏛️ Politics</button>
+    <button class="btn btn-tv"            onclick="draw('tv')">📺 TV & Places</button>
   </div>
   <div class="btn-row">
-    <button class="btn btn-gaming"   onclick="draw('gaming')">🎮 Gaming & Tech</button>
-    <button class="btn btn-domestic" onclick="draw('domestic')">🔨 Home & DIY</button>
-    <button class="btn btn-grab"     onclick="draw('grab')">🎲 Grab Bag</button>
-    <button class="btn btn-favs"     onclick="draw('favs')">⭐ Favorites</button>
+    <button class="btn btn-gaming"        onclick="draw('gaming')">🎮 Gaming & Tech</button>
+    <button class="btn btn-domestic"      onclick="draw('domestic')">🔨 Home & DIY</button>
+    <button class="btn btn-relationships" onclick="draw('relationships')">💔 Relationships</button>
+    <button class="btn btn-money"         onclick="draw('money')">💸 Money</button>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-aging"  onclick="draw('aging')">⏳ Aging & Time</button>
+    <button class="btn btn-dark"   onclick="draw('dark')">💀 Dark Corner</button>
+    <button class="btn btn-meme"   onclick="draw('meme')">🐸 Meme Culture</button>
+    <button class="btn btn-grab"   onclick="draw('grab')">🎲 Grab Bag</button>
   </div>
 
   <div class="counter" id="counter"></div>
 
-  <!-- RULES -->
   <div class="rules-wrap">
     <div class="rules-title">How To Play</div>
     <div class="rules-text"><span class="step-num">1. The Setup:</span> Nominate a Game Master to keep score. Put the tablet in the middle of the table. This game uses Cards Against Humanity cards. Everyone grabs 15 white cards.</div>
@@ -127,13 +98,13 @@
     <div class="rules-text"><span class="step-num">7. The Reveal & Scoring:</span> The Linesman reveals their secret order. Players get 1 point for every card in the exact right spot. Tally, rotate Linesman, draw a new spectrum.</div>
     <div class="time-box">
       <span class="time-title">Game Length & Point Goals</span>
-      <span style="display:block;margin-bottom:4px;"><strong>20 Points:</strong> A quick game. Roughly 30–45 minutes.</span>
+      <span style="display:block;margin-bottom:4px;"><strong>20 Points:</strong> A quick game. Roughly 30-45 minutes.</span>
       <span style="display:block;margin-bottom:4px;"><strong>50 Points:</strong> The standard session. Roughly 1.5 to 2 hours.</span>
       <span style="display:block;"><strong>100 Points:</strong> A marathon. You are going to be here all night. Order a pizza.</span>
     </div>
   </div>
-
 </div>
+
 <script>
 const DECKS = {
   official: [
@@ -181,6 +152,7 @@ const DECKS = {
       ["Better Star Wars","Worse Star Wars"],["Frame It","Burn It"]
     ]}
   ],
+
   music: [{cat:"Music",color:"#7c3aed",strips:[
     ["David Bowie Would","David Bowie Wouldn't"],["Great Instrument","Awful Instrument"],
     ["Backstage","Thrown Out"],["Bassist Energy","Singer Energy"],
@@ -191,32 +163,67 @@ const DECKS = {
     ["Rock Star","Basement"],["Encore!","Please Stop"],
     ["Soulful Crooner","Screaming into the Void"],["Perfect Bass Tone","Wet Cardboard Box"],
     ["Writer's Block","Three Chords"],["Acoustic","Death Metal"],
-    ["In Tune","Jazz"],["Demo","Final Mix"],["Stage Presence","Hiding by the Amp"]
+    ["In Tune","Jazz"],["Demo","Final Mix"],["Stage Presence","Hiding by the Amp"],
+    ["Headliner","Opening Act Nobody Watched"],["Groupie","Security Guard"],
+    ["The Drummer","The Drummer's Ego"],["Album of the Year","Deleted off Spotify"],
+    ["Power Ballad","Breakdown Track"],["Festival Main Stage","3pm Tent Nobody Found"],
+    ["Music Theory","Vibe-Based Playing"],["The Bassist Quit","The Band Quit"],
+    ["Sold Out Show","Playing to 12 People"],["Signed to a Label","Mom Thinks It's Great"],
+    ["Crowd Surfing","Immediately Dropped"],["Guitar Solo","Synth Preset #3"],
+    ["Acoustic Unplugged","Mic Feedback for 40 Seconds"]
   ]}],
+
   transport: [{cat:"Transport",color:"#1d6fa4",strips:[
     ["Mean Machine","A Prius"],["Sound Speed","Walking"],["Private Jet","Greyhound"],
     ["Street Legal","Going to Jail"],["Fuel Efficient","Gas Guzzler"],["Comfort","Torture"],
     ["First Class","Cargo Hold"],["Smooth Ride","Death Trap"],
     ["High Tech","Steam-Powered"],["Reliable","Mechanic Required"],
     ["Flying","Deep Sea"],["Aerodynamic","A Brick"],["Respectable","Embarrassing"],
-    ["Quiet Engine","Waking the Neighborhood"]
+    ["Quiet Engine","Waking the Neighborhood"],
+    ["Valet Parking","Circling for 40 Minutes"],["GPS Works","GPS Confidently Wrong"],
+    ["Cruise Control","White-Knuckling It"],["Carpool Lane","Driving Alone Lying"],
+    ["Road Trip Playlist","Silence Because We're Fighting"],
+    ["Rest Stop","Holding It for 200 Miles"],["EV Charging Station","Running on Empty and Prayer"],
+    ["Road Rage Contained","Road Rage Unleashed"],["Parallel Parked First Try","Seven Attempts and Still Bad"],
+    ["Traffic Is Moving","Parking Lot Freeway"],["Rental Car Energy","Rental Car Consequences"]
   ]}],
+
   food: [{cat:"Food",color:"#0e8c5a",strips:[
     ["Taco Topping","Not a Taco Topping"],["Fine Dining","Gas Station Sushi"],
     ["Wagyu","Spam"],["Authentic","Taco Bell"],["Spicy","Plain"],["Sweet","Savory"],
     ["Vegan","Carnivore"],["Gourmet","Technically Edible"],["Health Food","Deep-Fried"],
     ["Fresh Garden","Canned Since 1998"],["Comfort Food","Acquired Taste"],
     ["Street Food","Michelin Star"],["Breakfast","Late-Night Mistake"],
-    ["Tastes Like Chicken","Tastes Like Regret"]
+    ["Tastes Like Chicken","Tastes Like Regret"],
+    ["Meal Prepped Sunday","Ordered DoorDash Every Day Anyway"],
+    ["Expired Yesterday","Expired a Year Ago"],["Five-Second Rule Applied","Five-Second Rule Declined"],
+    ["Ate It Slowly","Inhaled It Standing Over the Sink"],
+    ["Leftovers That Got Better","Leftovers That Got Weird"],
+    ["Cooked It Perfectly","Set Off Smoke Alarm Twice"],
+    ["Portion Control","Portion Suggestion I Ignored"],
+    ["Brought to a Potluck","Brought to a Potluck and Nobody Touched It"],
+    ["Hangry Warning","Full and Dangerous"],["Last Slice","Took the Last Slice"],
+    ["Dessert You Earned","Dessert You Absolutely Did Not Earn"],
+    ["Fusion Cuisine","Confused Cuisine"],["Street Taco","Taco Bell at Midnight"],
+    ["The Dish That Impressed Everyone","The Dish Everyone Was Too Polite to Mention"],
+    ["Ate the Whole Thing","Ate the Whole Thing and Told Nobody"]
   ]}],
+
   politics: [{cat:"Politics",color:"#2563eb",strips:[
     ["Democrat","Republican"],["Statesman","Twitter Troll"],["Diplomatic Incident","Peace Treaty"],
     ["Democracy","Anarchy"],["Conspiracy","Truth"],["Grassroots","Lobbying"],
     ["Inauguration","Resignation"],["National Treasure","Public Enemy"],
     ["Revolution","Status Quo"],["Debate Winner","Meme of the Week"],
     ["Campaign Promise","Campaign Memory Loss"],["Tax Break","Audit"],
-    ["The Will of the People","The Will of People With Money"]
+    ["The Will of the People","The Will of People With Money"],
+    ["Bipartisan","Screaming into a Void"],["Term Limits","Something Nobody Actually Passes"],
+    ["The Constitution","What Your Uncle Thinks the Constitution Says"],
+    ["Foreign Policy","Winging It Internationally"],["Press Conference","Confusion at a Podium"],
+    ["Whistleblower","Scapegoat"],["National Hero","Trending for Bad Reasons"],
+    ["Policy","Vibes with Letterhead"],["Filibuster","Talking Until Everyone Gives Up"],
+    ["Your Tax Dollars","Your Tax Dollars Somewhere"],["Elected Official","Person You Regret Voting For"]
   ]}],
+
   tv: [{cat:"TV & Places",color:"#d97706",strips:[
     ["Great Kids Show","Terrible Kids Show"],["Binge-Watched","Turned Off in 10 Minutes"],
     ["HBO Series","Public Access TV"],["Emmy Drama","Trashy Reality"],
@@ -225,8 +232,20 @@ const DECKS = {
     ["Fan Favorite","Universally Hated"],["Hidden Gem","Overhyped Garbage"],
     ["Paradise","Tourist Trap"],["Five-Star Hotel","Haunted Motel"],
     ["Great Outdoors","The DMV"],["Home Sweet Home","Literal Hell"],
-    ["Peaceful Sanctuary","Construction Zone"],["Front Row","Nosebleed Seats"]
+    ["Peaceful Sanctuary","Construction Zone"],["Front Row","Nosebleed Seats"],
+    ["Series Finale That Stuck the Landing","Series Finale That Ruined Everything"],
+    ["Character You Rooted For","Character You Were Legally Required to Hate"],
+    ["Plot Twist Nobody Saw Coming","Plot Twist Everyone Saw in Episode 2"],
+    ["Cancelled Too Soon","Should Have Ended 6 Seasons Ago"],
+    ["The Villain Who Was Kind of Right","The Hero Who Was Kind of Awful"],
+    ["Spin-Off That Worked","Spin-Off That Should Not Exist"],
+    ["Documentary That Changed You","Documentary You Fell Asleep During"],
+    ["Rewatch Every Year","Watched Once, Never Again"],
+    ["Vacation Brochure","Vacation Reality"],["City Break","Why Is Everything So Expensive"],
+    ["Airbnb as Advertised","Airbnb Upon Arrival"],["Road Trip Memory","Road Trip Incident"],
+    ["The Place You Tell Everyone About","The Place You Tell Nobody About"]
   ]}],
+
   gaming: [{cat:"Gaming & Tech",color:"#475569",strips:[
     ["Console Peasant","PC Master Race"],["Casual Gamer","Sweaty Tryhard"],
     ["Pay-to-Win","Skill-Based"],["Rage Quit","GG WP"],
@@ -239,8 +258,16 @@ const DECKS = {
     ["Keyboard Warrior","Actual Expert"],["Expensive DLC","Free Update"],
     ["Side Character","Main Character"],["Tutorial Level","Final Dungeon"],
     ["Noob","Veteran"],["Campers","Rushers"],["Button Masher","Screen Smasher"],
-    ["Indie Darling","Triple-A Trash"],["Retro Pixel Art","Hyper-Realistic Graphics"]
+    ["Indie Darling","Triple-A Trash"],["Retro Pixel Art","Hyper-Realistic Graphics"],
+    ["Loot Box","Actual Skill"],["Voice Chat Enabled","Voice Chat a Mistake"],
+    ["Modded","Banned from Server"],["Saved the World","Accidentally Deleted the Save File"],
+    ["Final Boss","Tutorial Boss That Still Beat You"],
+    ["Respawn Immediately","Sat There for 10 Minutes Processing"],
+    ["Friendly Fire Off","Friendly Fire Very Much On"],
+    ["Achievement Unlocked","Achievement That Required 400 Hours"],
+    ["Easter Egg","Brick Wall You Hit for an Hour"]
   ]}],
+
   domestic: [{cat:"Home & DIY",color:"#b45309",strips:[
     ["Nailed It","Call a Professional"],["Measure Twice","Eyeball It"],
     ["Duct Tape Fix","Permanent Solution"],["Green Thumb","Plant Serial Killer"],
@@ -255,8 +282,142 @@ const DECKS = {
     ["Mowing the Lawn","Paying the Kid Next Door"],["Family Heirloom","Goodwill Donation"],
     ["Squeaky Hinge","WD-40"],["Dog Hair Everywhere","Spotless Floor"],
     ["Pest Control","Adopted the Bug"],["Burnt Toast","Michelin Star Breakfast"],
-    ["Dishwasher Safe","Hand Wash Only"],["Woke Up Rested","Slept on My Neck Wrong"]
+    ["Dishwasher Safe","Hand Wash Only"],["Woke Up Rested","Slept on My Neck Wrong"],
+    ["Fixed It Myself","Made It Significantly Worse"],["Bought the Right Size","Bought the Wrong Size"],
+    ["IKEA Assembled Perfectly","IKEA Assembled with Leftover Screws"],
+    ["Cleaned Before Guests Arrived","Shoved Everything in a Closet"],
+    ["The Junk Drawer","The Junk Drawer's Junk Drawer"],
+    ["Replaced the Battery","Took the Smoke Detector Down"],
+    ["Deep Cleaned","Wiped the Counter and Called It Done"]
   ]}],
+
+  relationships: [{cat:"Relationships",color:"#be185d",strips:[
+    ["Husband Material","Mug Shot Material"],["Wife Goals","Unhinged in a Fun Way"],
+    ["First Date Energy","Three Years In Energy"],["Red Flag","A Parade of Red Flags"],
+    ["The One","Your Therapist Knows by Name"],["Talking Stage","Never Speaking Again Stage"],
+    ["Couple Goals","Couple on Dr. Phil"],["Romantic","Why Would You Do That"],
+    ["Trust Fall","Text on Read for 4 Days"],["Meet Cute","Meet Drunk"],
+    ["Soulmate","Cautionary Tale"],["PDA","Sir This Is a Wendy's"],
+    ["Healthy Communication","Stewing in Silence for a Week"],
+    ["An Apology","A Non-Apology That Made It Worse"],
+    ["The Honeymoon Phase","Year Four"],["Chemistry","Unresolved Trauma Mistaken for Chemistry"],
+    ["Romantic Getaway","Shared Airbnb with Thin Walls"],
+    ["Love Language: Acts of Service","Love Language: Passive Aggression"],
+    ["Grew Apart","Imploded Spectacularly"],["Butterflies","Existential Dread"],
+    ["Swiped Right","Should Not Have Swiped Right"],
+    ["Healthy Attachment","Situationship with Extra Steps"],
+    ["Boundaries","Walls with Better Branding"],
+    ["Introduced to the Family","Not Introduced to the Family"],
+    ["The Relationship That Made You Better","The Relationship That Made You Interesting at Therapy"],
+    ["Letting Go Gracefully","Letting Go Eventually"],["Still Friends","Blocked on Everything"],
+    ["They Changed","You Changed",""],["Closure","The Story You've Told 400 Times"],
+    ["Fell in Love","Fell in a Situationship"],["Moving In Together","Moving Out Immediately"],
+    ["The First Fight","The Fight That Ended It"],["Inside Joke","Inside Wound"],
+    ["Date Night","Netflix and Unconscious by 9pm"],
+    ["Said I Love You First","Regretted Saying It First"],
+    ["The Ex You're Over","The Ex You Google Sometimes"]
+  ]}],
+
+  money: [{cat:"Money",color:"#15803d",strips:[
+    ["Financially Responsible","Just Discovered Afterpay"],
+    ["Savings Account","The Account That Doesn't Survive the Month"],
+    ["Investing Early","Found Out About It at 38"],
+    ["Treat Yourself Once","Treat Yourself into Overdraft"],
+    ["Budget","Suggestions I Ignore"],["Good Financial Decision","A Purchase That Needed a Moment of Silence"],
+    ["Rich in Experience","Broke"],["401k","What's a 401k"],
+    ["Splurge","Regret in Receipt Form"],["Emergency Fund","What I Eat Into Every Month"],
+    ["Living Within Your Means","Living Despite Your Means"],
+    ["Compound Interest","Compound Consequences"],
+    ["On Sale","Didn't Need It but It Was on Sale"],["Net Worth","Debt with a Nicer Name"],
+    ["Financial Advisor","Person I'm Too Embarrassed to Call"],
+    ["Making It Rain","Making It Mist Slightly"],
+    ["Checked the Bank App","Cannot Check the Bank App Right Now"],
+    ["Paid Off the Card","Immediately Used the Card Again"],
+    ["Split the Bill","Awkward Silence About the Bill"],
+    ["Tipped 20%","Tipped and Felt the Pain"],["Impulse Buy Returned","Impulse Buy Kept in Shame"],
+    ["The Investment Paid Off","The Investment Did Not Pay Off"],
+    ["Price Checked Before Buying","Didn't Look at the Price Until Checkout"],
+    ["Money Can't Buy Happiness","Money Can Buy a Lot of Things That Help"],
+    ["Coupon Clipped","Paid Full Price Out of Spite"],
+    ["Subscription I Use","Subscription I Forgot About"],
+    ["Bought Generic","Bought Name Brand Out of Shame"],
+    ["Tax Refund Saved","Tax Refund Gone in 48 Hours"],
+    ["Financially Independent","Financially Adjacent to Independent"]
+  ]}],
+
+  aging: [{cat:"Aging & Time",color:"#92400e",strips:[
+    ["Young and Dumb","Old and Still At It"],["In Your 20s","In Your 30s Pretending"],
+    ["Your Parents' Age","Your Parents' Behavior"],["Feeling 25","Looking 25"],
+    ["Getting Older Gracefully","Getting Older Loudly"],
+    ["Recovery Time: One Day","Recovery Time: A Week and a Half"],
+    ["Stayed Out All Night","In Bed by 9:30"],["YOLO","Your Back"],
+    ["Growing Pains","Pain That Never Left"],["Used to Be a Night Owl","Asleep During the Movie"],
+    ["Metabolism in Your 20s","Metabolism Now"],["Wise with Age","Tired with Age"],
+    ["The Things You Said You'd Never Do","The Things You Do Now"],
+    ["Aging Like Fine Wine","Aging Like Milk Left Out"],
+    ["Still Got It","Got What Exactly"],["Ran a Mile","Ran a Mile Once in 2009"],
+    ["Pulled an All-Nighter","Accidentally Asleep by 10"],
+    ["Thought That Was Normal","Now Realize That Was Weird"],
+    ["Photos from Your 20s","Photos from Now"],["Remembered It","It's Gone"],
+    ["Learned from That Mistake","Made That Mistake Again at 40"],
+    ["Things That Used to Be Fun","Things That Are Now Exhausting"],
+    ["Knees at 22","Knees Now"],["Hangover at 22","Hangover Now"],
+    ["The Years Fly By","This Particular Tuesday"],
+    ["Time Heals All Wounds","Time Just Adds More Wounds"],
+    ["Still Relevant","Peaked in 2007"],["Retirement Plan","Working Forever"],
+    ["Grew Into Yourself","Still Growing"],["Nostalgia","The Exact Same Problems, Smaller Screen"]
+  ]}],
+
+  dark: [{cat:"Dark Corner",color:"#7f1d1d",strips:[
+    ["Died Doing What They Loved","Did Not Love What Killed Them"],
+    ["Gone Too Soon","Gone at the Right Time for Everyone Else"],
+    ["In a Better Place","Statistically Uncertain"],["Rest in Peace","Rest in Chaos"],
+    ["Funeral Appropriate","Not Funeral Appropriate"],["Left a Legacy","Left a Mess"],
+    ["Final Words Were Profound","Final Words Were Embarrassing"],
+    ["Passed Peacefully","Did Not Pass Peacefully"],
+    ["A Beautiful Service","A Scene at the Service"],
+    ["What I'll Be Remembered For","What I'll Actually Be Remembered For"],
+    ["Grief Stage 1: Denial","Grief Stage 5: Still Denial"],
+    ["Healthy Coping Mechanism","That Other Thing"],["Therapy","Avoiding Therapy"],
+    ["Rock Bottom","The Rock Bottom You Decorated and Got Comfortable In"],
+    ["The Diagnosis","Googling the Diagnosis at 2am"],
+    ["Told Someone","Told Nobody"],["Asked for Help","Convinced Yourself You Were Fine"],
+    ["The Last Good Day","The Day You Didn't Know Was the Last Good Day"],
+    ["Survived It","Still Carrying It"],["The Wound That Healed","The Wound That Didn't"],
+    ["Processed It","Shoved It Down and Moved On"],
+    ["The Version of You Before","The Version of You After"],
+    ["Dark Thought You Laughed Off","Dark Thought You Didn't Laugh Off"],
+    ["The Call You Expected","The Call You Never Expected"],
+    ["Crying in the Car","Crying in the Shower"],["The Good Kind of Alone","The Bad Kind of Alone"],
+    ["Intrusive Thought Ignored","Intrusive Thought Won"],
+    ["The Night That Changed Everything","The Morning After"],
+    ["Still Here","Barely Here"],["The Silence After","The Noise in Your Head After"]
+  ]}],
+
+  meme: [{cat:"Meme Culture",color:"#065f46",strips:[
+    ["This Is Fine","This Is Not Fine"],["NPC Energy","Main Character Energy"],
+    ["No Cap","Cap"],["Slay","Did Not Slay"],["Based","Cringe"],
+    ["Low Key","High Key"],["It's Giving","It's Not Giving Anything"],
+    ["Living Rent Free in My Head","Evicted from My Head"],
+    ["Understood the Assignment","Did Not Read the Assignment"],
+    ["Ate and Left No Crumbs","Left Crumbs Everywhere"],
+    ["Said What Needed to Be Said","Said Too Much"],
+    ["Red Flag","Green Flag"],["Rizz","No Rizz Whatsoever"],
+    ["Delulu","Suspiciously Accurate"],["Touch Grass","Already Touching Grass"],
+    ["Went Feral","Professionally Feral"],["We're So Back","It's So Over"],
+    ["Vibe Check: Passed","Vibe Check: Failed"],
+    ["Pressed","Unbothered"],["That Hits Different","That Hits Exactly the Same"],
+    ["The Algorithm Understood Me","The Algorithm Is Watching Me"],
+    ["Ratio'd","Somehow Won"],["Caught in 4K","Denied in 4K"],
+    ["Chronically Online","Dangerously Offline"],
+    ["Reply Guy","Main Poster Energy"],["Sent It","Immediately Regretted Sending It"],
+    ["Parasocial Relationship Contained","Parasocial Relationship Unhinged"],
+    ["Canon Event","Skip This Part"],["Lore","No One Asked for the Lore"],
+    ["Era","Brief Phase"],["Villain Arc","Redemption Arc Nobody Believed"],
+    ["Understood Ironically","Understood Unironically"],
+    ["Posted It","Deleted It Within 4 Minutes"]
+  ]}],
+
   grab: [{cat:"Grab Bag",color:"#64748b",strips:[
     ["TikTok","Myspace"],["HD","Toaster Quality"],["Clickbait","Obvious Scam"],
     ["Grandma Approved","Banned"],["Solid Plan","Winging It"],["Antique","Junk"],
@@ -270,53 +431,38 @@ const DECKS = {
     ["Internet Famous","Respected"],["Wholesome","Toxic Waste"],
     ["Ratio'd","Universal Agreement"],["Cyberpunk","Victorian"],
     ["Unlimited Data","Dial-Up"],["Influencer","Cardboard Box"],
-    ["Bot-Generated","Human"],["Dark Mode","Light Mode (Psycho)"],
-    ["Power Move","Social Suicide"],["High Fashion","Laundry Day Outfit"],
-    ["Eco-Friendly","Toxic Spill"],["Zen Garden","Mosh Pit"],
-    ["Ancient Mystery","Minor Inconvenience"],["Infinite Wisdom","Confidently Wrong"],
-    ["Perfectly Timed","Late to a Funeral"],["Bulletproof","Made of Glass"],
-    ["Mountain Peak","Bottom of the Ocean"],["Universal Truth","Inside Joke"],
-    ["Fresh Air","Stale Elevator"],["Instinct","Overthinking"],
-    ["Lightning Strike","Static Shock"],["Heart of Gold","Ice Cold"],
-    ["Safe Bet","Wild Card"],["Timeless Classic","Fad"],
-    ["Unstoppable Force","Immovable Object"],["Cinematic Masterpiece","Straight to DVD"],
-    ["Guilty Pleasure","Critically Acclaimed"],["Subbed","Dubbed"],
-    ["Overrated","Underrated"],["Nostalgia","Cringe"],["Vibes","Data-Driven"],
-    ["Street Smarts","Book Smarts"],["Gen Z Slang","Millennial Pause"],
-    ["Mid-Life Crisis","Quarter-Life Crisis"],["Passive Aggressive","Direct Confrontation"],
-    ["Toxic Trait","Charming Quirk"],["Introvert's Nightmare","Extrovert's Paradise"],
-    ["Cancel Culture","Accountability"],["Plot Hole","Brilliant Foreshadowing"],
-    ["Cursed Image","Blessed Image"],["Chaotic Good","Lawful Evil"],
-    ["NPC Behavior","Protagonist Energy"],["Big Brain Move","Smooth Brain Move"],
-    ["Existential Dread","Blissful Ignorance"],["Unspoken Rule","Written Law"],
-    ["Public Meltdown","Private Breakdown"],["Gatekeeping","Welcoming"],
-    ["Try Hard","Effortless"],["Too Soon","Perfect Timing"]
-  ]}],
-  favs: [{cat:"Original Favorites",color:"#db2777",strips:[
-    ["God's Plan","Satan's Plan"],["Blessed","Cursed"],["Heaven Material","Hell's VIP List"],
-    ["Pray About It","Do Not Pray About This"],["Turn the Other Cheek","Throw Hands"],
-    ["A Miracle","An Insurance Claim"],["Confession-Worthy","Confession Couldn't Handle It"],
-    ["Takes Forever","Over Too Soon"],["Worth the Wait","Was Not Worth the Wait"],
-    ["Fashionably Late","Criminally Late"],["Five More Minutes","Three Hours Later"],
-    ["The Early Bird","Hit Snooze 9 Times"],["Quick Nap","RIP to Your Whole Day"],
-    ["Husband Material","Mug Shot Material"],["Wife Goals","Unhinged in a Fun Way"],
-    ["First Date Energy","Three Years In Energy"],["Red Flag","A Parade of Red Flags"],
-    ["The One","Your Therapist Knows by Name"],["Couple Goals","Instant Breakup"],
-    ["Trust Fall","Text on Read for 4 Days"],["Meet Cute","Meet Drunk"],
-    ["Soulmate","Cautionary Tale"],["PDA","Sir This Is a Wendy's"],
-    ["LinkedIn Post","What Actually Happened"],["Team Player","Reply-All Person"],
-    ["Synergy","Cowards Using Big Words"],["Going Above and Beyond","Quietly Resenting Everyone"],
-    ["9 to 5","9 to 9 and Still Emailing"],["Fun Team Outing","Mandatory Fun"],
-    ["Work-Life Balance","Myth"],["Annual Bonus","Pizza Party"],
-    ["Promotion","Title Change Same Pay"],["Micromanaged","Macro-Suffering"],
-    ["A Balanced Meal","A Snack Plate Pretending"],["The Recipe Says 20 Minutes","Two Hours and a Mess"],
-    ["Food Coma","Conscious but Unwilling to Move"],["Ate Like a King","Ate Like a Raccoon"],
-    ["Thriving","Surviving on Vibes"],["Personal Growth","Same Stuff New Hat"],
-    ["Self Care","Avoiding Responsibility"],["A New Chapter","The Same Chapter Again"],
-    ["Peak Performance","Getting Through the Day"],["Adulting","Adulting Poorly"],
-    ["Therapy Breakthrough","Crying in a Parking Lot"],["Journal Entry","Unhinged Notes App Dump"],
-    ["Rock Bottom","Comfortable Rock Bottom"],["Main Character Energy","Supporting Role in Own Life"],
-    ["Healing Era","Questionable Decisions Era"],["Red Flag in Others","Red Flag You Excuse in Yourself"]
+    ["Dark Mode","Light Mode (Psycho)"],["Power Move","Social Suicide"],
+    ["High Fashion","Laundry Day Outfit"],["Eco-Friendly","Toxic Spill"],
+    ["Zen Garden","Mosh Pit"],["Ancient Mystery","Minor Inconvenience"],
+    ["Infinite Wisdom","Confidently Wrong"],["Perfectly Timed","Late to a Funeral"],
+    ["Bulletproof","Made of Glass"],["Mountain Peak","Bottom of the Ocean"],
+    ["Universal Truth","Inside Joke"],["Fresh Air","Stale Elevator"],
+    ["Instinct","Overthinking"],["Lightning Strike","Static Shock"],
+    ["Heart of Gold","Ice Cold"],["Safe Bet","Wild Card"],
+    ["Timeless Classic","Fad"],["Unstoppable Force","Immovable Object"],
+    ["Cinematic Masterpiece","Straight to DVD"],["Guilty Pleasure","Critically Acclaimed"],
+    ["Subbed","Dubbed"],["Overrated","Underrated"],["Nostalgia","Cringe"],
+    ["Vibes","Data-Driven"],["Street Smarts","Book Smarts"],
+    ["Gen Z Slang","Millennial Pause"],["Mid-Life Crisis","Quarter-Life Crisis"],
+    ["Passive Aggressive","Direct Confrontation"],["Toxic Trait","Charming Quirk"],
+    ["Introvert's Nightmare","Extrovert's Paradise"],["Cancel Culture","Accountability"],
+    ["Plot Hole","Brilliant Foreshadowing"],["Cursed Image","Blessed Image"],
+    ["Chaotic Good","Lawful Evil"],["NPC Behavior","Protagonist Energy"],
+    ["Big Brain Move","Smooth Brain Move"],["Existential Dread","Blissful Ignorance"],
+    ["Unspoken Rule","Written Law"],["Public Meltdown","Private Breakdown"],
+    ["Gatekeeping","Welcoming"],["Try Hard","Effortless"],["Too Soon","Perfect Timing"],
+    ["Woke Up Choosing Violence","Woke Up Choosing Peace"],
+    ["Left on Read","Left on Read and It's Fine Actually"],
+    ["The Group Chat","The Other Group Chat"],
+    ["Sunday Scaries","Monday Is Already Here"],
+    ["That One Friend Who Brings Drama","That One Friend Who Defuses It"],
+    ["Said It Out Loud","Should Have Kept That One In"],
+    ["The Version I Told","The Version That Actually Happened"],
+    ["Showed Up","Cancelled Last Minute"],["Energy Drink","Water Like an Adult"],
+    ["Productive Morning","Doomscrolled Until Noon"],
+    ["Made a List","Lost the List"],["Set the Alarm","Turned Off the Alarm"],
+    ["Answered the Phone","Let It Go to Voicemail Forever"],
+    ["Read the Terms and Conditions","Clicked Accept Immediately"]
   ]}]
 };
 
@@ -325,6 +471,7 @@ let drawCount = 0;
 
 function draw(deckKey) {
   const cats = DECKS[deckKey];
+  if (!cats) return;
   if (!seen[deckKey]) seen[deckKey] = new Set();
   const flat = [];
   cats.forEach((cat, ci) => cat.strips.forEach((strip, si) => flat.push({ci, si})));
@@ -335,8 +482,6 @@ function draw(deckKey) {
   const cat = cats[pick.ci];
   const strip = cat.strips[pick.si];
   drawCount++;
-
-  // badge with the cat's own color
   document.getElementById('badge-row').innerHTML =
     `<span class="category-badge" style="background:${cat.color}22;color:${cat.color};border:1px solid ${cat.color}55">${cat.cat}</span>`;
   document.getElementById('strip-container').innerHTML = `
