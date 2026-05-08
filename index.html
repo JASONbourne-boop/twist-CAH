@@ -3,139 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Out of Line: Card Generator</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <title>Out of Line</title>
   <style>
     :root {
-      --color-background-primary: #ffffff;
-      --color-background-secondary: #f8f9fa;
-      --color-border-primary: #dee2e6;
-      --color-border-secondary: #e9ecef;
-      --color-text-primary: #212529;
-      --color-text-secondary: #6c757d;
-      --border-radius-md: 8px;
-      --border-radius-lg: 12px;
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2e2e2e;
+      --text: #f0f0f0;
+      --subtext: #888;
+      --radius: 14px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f4f9; color: var(--color-text-primary); }
-    .outer { padding: 3rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; }
+
+    .outer { padding: clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 4vw, 1.5rem); display: flex; flex-direction: column; align-items: center; gap: clamp(1rem, 3vw, 1.75rem); max-width: 760px; margin: 0 auto; }
+
+    /* CARD */
     .card-wrap {
-      width: 100%; max-width: 640px; background: var(--color-background-primary);
-      border: 1px solid var(--color-border-primary); border-radius: var(--border-radius-lg);
-      padding: 3.5rem 2rem; display: flex; flex-direction: column; gap: 1.5rem;
-      min-height: 220px; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 5vw, 2.5rem);
+      display: flex; flex-direction: column; gap: 1.25rem;
+      min-height: clamp(160px, 25vw, 220px); justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
-    .strip-row { display: flex; align-items: center; gap: 0; width: 100%; }
-    .label { font-size: 22px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
-    .dots { flex: 1; margin: 0 16px; height: 2px; border-bottom: 4px dotted var(--color-border-primary); align-self: center; opacity: 0.4; position: relative; top: 6px; }
-    .category-badge { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; padding: 6px 16px; border-radius: 30px; display: inline-block; margin-bottom: 1.5rem; align-self: center; }
-    .btn-row { display: flex; gap: 16px; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
-    button {
-      font-size: 15px; font-weight: 700; padding: 14px 24px; border-radius: var(--border-radius-md);
-      border: 1px solid var(--color-border-primary); background: var(--color-background-primary);
-      color: var(--color-text-primary); cursor: pointer; transition: all 0.2s;
-      display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    .badge-row { display: flex; justify-content: center; }
+    .category-badge {
+      font-size: clamp(9px, 1.8vw, 11px); font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.15em; padding: 5px 14px; border-radius: 30px; display: inline-block;
     }
-    button.official { border-left: 5px solid #854F0B; }
-    button.custom   { border-left: 5px solid #3C3489; }
-    button:hover { background: var(--color-background-secondary); transform: translateY(-1px); }
-    button:active { transform: scale(0.97); }
-    .counter { font-size: 13px; color: var(--color-text-secondary); text-align: center; margin-top: 2rem; }
+    .strip-row { display: flex; align-items: center; width: 100%; }
+    .label { font-size: clamp(16px, 4vw, 24px); font-weight: 800; white-space: nowrap; flex-shrink: 0; color: var(--text); }
+    .dots { flex: 1; margin: 0 clamp(8px, 2vw, 18px); border-bottom: 3px dotted #444; align-self: center; position: relative; top: 5px; min-width: 20px; }
+    .placeholder { text-align: center; color: var(--subtext); font-weight: 500; font-size: clamp(13px, 2.5vw, 15px); }
+
+    /* BUTTONS */
+    .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--subtext); text-align: center; width: 100%; }
+    .btn-row { display: flex; gap: clamp(6px, 1.5vw, 10px); justify-content: center; flex-wrap: wrap; width: 100%; }
+    .btn {
+      font-size: clamp(12px, 2.2vw, 14px); font-weight: 700;
+      padding: clamp(9px, 2vw, 12px) clamp(12px, 2.5vw, 18px);
+      border-radius: 10px; border: none; cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+      color: #fff; flex: 1 1 auto; min-width: clamp(80px, 18vw, 110px); max-width: 180px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+      line-height: 1.2; text-align: center;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.5); }
+    .btn:active { transform: scale(0.96); opacity: 0.85; }
+
+    /* Button colors */
+    .btn-official  { background: linear-gradient(135deg, #b07d2e, #7a5010); }
+    .btn-music     { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
+    .btn-transport { background: linear-gradient(135deg, #1d6fa4, #0c3a5e); }
+    .btn-food      { background: linear-gradient(135deg, #0e8c5a, #065038); }
+    .btn-politics  { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
+    .btn-tv        { background: linear-gradient(135deg, #d97706, #92400e); }
+    .btn-gaming    { background: linear-gradient(135deg, #475569, #1e293b); }
+    .btn-domestic  { background: linear-gradient(135deg, #b45309, #78350f); }
+    .btn-grab      { background: linear-gradient(135deg, #64748b, #334155); }
+    .btn-favs      { background: linear-gradient(135deg, #db2777, #831843); }
+
+    .counter { font-size: clamp(11px, 2vw, 13px); color: var(--subtext); text-align: center; }
+
+    /* RULES */
     .rules-wrap {
-      width: 100%; max-width: 640px; background: var(--color-background-primary);
-      border: 1px solid var(--color-border-primary); border-radius: var(--border-radius-lg);
-      padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin: 2rem auto;
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+      display: flex; flex-direction: column; gap: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
-    .rules-title { font-size: 18px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-primary); text-align: center; margin-bottom: 1rem; }
-    .rules-text { font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); }
-    .rules-step { margin-bottom: 1.2rem; }
-    .step-num { font-weight: 800; color: var(--color-text-primary); }
-    .time-box { background: var(--color-background-secondary); padding: 1rem; border-radius: var(--border-radius-md); text-align: center; font-size: 14px; margin-top: 1rem; border: 1px solid var(--color-border-secondary); }
-    .time-title { font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem; display: block; }
+    .rules-title { font-size: clamp(14px, 3vw, 18px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text); text-align: center; margin-bottom: 0.5rem; }
+    .rules-text { font-size: clamp(13px, 2.5vw, 15px); line-height: 1.65; color: #aaa; }
+    .step-num { font-weight: 800; color: var(--text); }
+    .time-box { background: #111; padding: 1rem; border-radius: 10px; text-align: center; font-size: clamp(12px, 2.2vw, 14px); margin-top: 0.5rem; border: 1px solid var(--border); color: #aaa; }
+    .time-title { font-weight: 700; color: var(--text); margin-bottom: 0.5rem; display: block; }
   </style>
 </head>
 <body>
 <div class="outer">
-  <div class="card-wrap" id="card">
-    <div id="badge-row" style="display:flex;justify-content:center;"></div>
+
+  <!-- CARD -->
+  <div class="card-wrap">
+    <div class="badge-row" id="badge-row"></div>
     <div id="strip-container">
-      <div style="text-align:center;color:#999;font-weight:500;">Ready to play. Pick a deck.</div>
+      <div class="placeholder">Ready to play. Pick a deck below.</div>
     </div>
   </div>
+
+  <!-- OFFICIAL -->
+  <div class="section-label">Official Deck</div>
   <div class="btn-row">
-    <button class="official" onclick="draw('official')"><i class="ti ti-cards"></i> Draw Official</button>
-    <button class="custom"   onclick="draw('custom')"><i class="ti ti-swatches"></i> Draw Custom</button>
+    <button class="btn btn-official" onclick="draw('official')">🃏 Draw Official</button>
   </div>
+
+  <!-- CUSTOM BY CATEGORY -->
+  <div class="section-label">Custom Decks</div>
+  <div class="btn-row">
+    <button class="btn btn-music"     onclick="draw('music')">🎸 Music</button>
+    <button class="btn btn-transport" onclick="draw('transport')">🚗 Transport</button>
+    <button class="btn btn-food"      onclick="draw('food')">🍔 Food</button>
+    <button class="btn btn-politics"  onclick="draw('politics')">🏛️ Politics</button>
+    <button class="btn btn-tv"        onclick="draw('tv')">📺 TV & Places</button>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-gaming"   onclick="draw('gaming')">🎮 Gaming & Tech</button>
+    <button class="btn btn-domestic" onclick="draw('domestic')">🔨 Home & DIY</button>
+    <button class="btn btn-grab"     onclick="draw('grab')">🎲 Grab Bag</button>
+    <button class="btn btn-favs"     onclick="draw('favs')">⭐ Favorites</button>
+  </div>
+
   <div class="counter" id="counter"></div>
-</div>
 
-<div class="rules-wrap">
-  <div class="rules-title">How To Play</div>
-  <div class="rules-text rules-step"><span class="step-num">1. The Setup:</span> Nominate a Game Master to keep score. Put the tablet in the middle of the table. This game uses Cards Against Humanity cards. Everyone grabs 15 white cards.</div>
-  <div class="rules-text rules-step"><span class="step-num">2. The Draw:</span> The first player is the "Linesman." They tap either Official or Custom to draw a spectrum and read it out loud to the table.</div>
-  <div class="rules-text rules-step"><span class="step-num">3. The Pitch:</span> Every other player picks one white card from their hand that fits somewhere on that spectrum and hands it face-down to the Linesman.</div>
-  <div class="rules-text rules-step"><span class="step-num">4. The Lineup:</span> The Linesman shuffles the submitted cards and flips them face-up. Assign a letter to each card left to right (A, B, C, D, E...).</div>
-  <div class="rules-text rules-step"><span class="step-num">5. The Secret Order:</span> The Linesman secretly decides the "correct" order of those cards along the spectrum (Left to Right).</div>
-  <div class="rules-text rules-step"><span class="step-num">6. The Guess:</span> Everyone else secretly writes down what they think the Linesman's exact order is (Example: C - A - E - D - B).</div>
-  <div class="rules-text rules-step"><span class="step-num">7. The Reveal & Scoring:</span> The Linesman reveals their secret order. Players get 1 point for every card in the exact right spot. Tally, rotate Linesman, draw a new spectrum.</div>
-  <div class="time-box">
-    <span class="time-title">Game Length & Point Goals</span>
-    <span style="display:block;margin-bottom:4px;"><strong>20 Points:</strong> A quick game. Roughly 30–45 minutes.</span>
-    <span style="display:block;margin-bottom:4px;"><strong>50 Points:</strong> The standard session. Roughly 1.5 to 2 hours.</span>
-    <span style="display:block;"><strong>100 Points:</strong> A marathon. You are going to be here all night. Order a pizza.</span>
+  <!-- RULES -->
+  <div class="rules-wrap">
+    <div class="rules-title">How To Play</div>
+    <div class="rules-text"><span class="step-num">1. The Setup:</span> Nominate a Game Master to keep score. Put the tablet in the middle of the table. This game uses Cards Against Humanity cards. Everyone grabs 15 white cards.</div>
+    <div class="rules-text"><span class="step-num">2. The Draw:</span> The first player is the "Linesman." They tap a deck button to draw a spectrum and read it out loud to the table.</div>
+    <div class="rules-text"><span class="step-num">3. The Pitch:</span> Every other player picks one white card from their hand that fits somewhere on that spectrum and hands it face-down to the Linesman.</div>
+    <div class="rules-text"><span class="step-num">4. The Lineup:</span> The Linesman shuffles the submitted cards and flips them face-up. Assign a letter to each card left to right (A, B, C, D, E...).</div>
+    <div class="rules-text"><span class="step-num">5. The Secret Order:</span> The Linesman secretly decides the "correct" order of those cards along the spectrum (Left to Right).</div>
+    <div class="rules-text"><span class="step-num">6. The Guess:</span> Everyone else secretly writes down what they think the Linesman's exact order is (Example: C - A - E - D - B).</div>
+    <div class="rules-text"><span class="step-num">7. The Reveal & Scoring:</span> The Linesman reveals their secret order. Players get 1 point for every card in the exact right spot. Tally, rotate Linesman, draw a new spectrum.</div>
+    <div class="time-box">
+      <span class="time-title">Game Length & Point Goals</span>
+      <span style="display:block;margin-bottom:4px;"><strong>20 Points:</strong> A quick game. Roughly 30–45 minutes.</span>
+      <span style="display:block;margin-bottom:4px;"><strong>50 Points:</strong> The standard session. Roughly 1.5 to 2 hours.</span>
+      <span style="display:block;"><strong>100 Points:</strong> A marathon. You are going to be here all night. Order a pizza.</span>
+    </div>
   </div>
+
 </div>
-
 <script>
-const OFFICIAL_STRIPS = [
-  {cat:"Official: Social",color:"amber",strips:[
-    ["Ain't Broke","Needs Fixing"],["Alpha Male","Total Beta"],["Amazing Travel","Vacation from Hell"],
-    ["Appropriate","Inappropriate"],["Art","Not Art"],["Awesome Superpower","Crappy Superpower"],
-    ["Basic","Totally Unique"],["Before Sex","After Sex"],["Better on LSD","Worse on LSD"],
-    ["Boomer","Zoomer"],["Brave","Cowardly"],["Call 911","Deal With It"],
-    ["Cause for Concern","No Biggie"],["Cheap Thrill","Profound Experience"],["City","Country"],
-    ["Classy","Trashy"],["Clean","Messy"],["Comfortable","Uncomfortable"],
-    ["Convenient","Inconvenient"],["Cool","Uncool"],["Olympic Sport","Not an Olympic Sport"],
-    ["Viral Video","Total Flop"],["Father Proud","Father Disappointed"],["Feminist","Misogynist"]
-  ]},
-  {cat:"Official: Standards",color:"teal",strips:[
-    ["First Date","Year 20 of Marriage"],["First Hour","Last Hour"],["Science Fair Winner","Last Place"],
-    ["Food","Not Food"],["For White People","Not for Them"],["Forgettable","Unforgettable"],
-    ["In Heaven","In Hell"],["Friend","Foe"],["Family Fun","Just Dad Fun"],
-    ["Gay","Straight"],["Good Band Name","Bad Band Name"],["Good CAH Card","Trash Card"],
-    ["Political Win","Political Scandal"],["Good for Marriage","Bad for Marriage"],
-    ["Deeply Awkward","Perfectly Normal"],["Great Business Idea","Bad Business Idea"],
-    ["Thanksgiving Topic","Awkward Silence"],["Excuse for Late","Bad Excuse"],
-    ["Beach Fun","Beach Closed"],["Healthy","Unhealthy"],["Hell Yes","Absolutely Not"],
-    ["Rock Bottom","Best Life"],["Hobby","Career"],["Honorable Death","Shameful Death"]
-  ]},
-  {cat:"Official: Culture",color:"red",strips:[
-    ["I Was Drunk","I Was High"],["Impressive","Not Impressive"],["Impressive on Resume","Unhirable"],
-    ["Youth","Old Age"],["Innovative","Already Done"],["Jesus Would","Jesus Wouldn't"],
-    ["Kids Love It","Kids Hate It"],["Makes Dog Happy","Makes Spouse Happy"],
-    ["Masculine","Feminine"],["Physical Demand","Emotional Demand"],
-    ["Trending on TikTok","Banned"],["Memory","Regret"],["Drink I'd Order","Drink I'd Avoid"],
-    ["Okay to Joke","Not Okay"],["Order","Chaos"],["Painless","Painful"],
-    ["Pleases God","Angers God"],["Reality TV","Prestige Drama"],["Red Flag","Green Light"],
-    ["Relaxing","Stimulating"],["Romantic","Not Romantic"],["Safe","Dangerous"],
-    ["Scary Costume","Sexy Costume"],["Failure","Success"]
-  ]},
-  {cat:"Official: Life",color:"purple",strips:[
-    ["Sex","Not Sex"],["Simple","Complicated"],["Small","Big"],["Smart","Dumb"],
-    ["Smells Good","Smells Bad"],["Start of Good Night","Start of Bad Night"],
-    ["Takes Forever","Over Too Soon"],["Joy","Sadness"],["That's Me","Not Me"],
-    ["Comedy Film","Horror Film"],["Trendy","Timeless"],["Trump Claimed","Trump Did"],
-    ["Office Appropriate","Fired"],["Unfair Stigma","Rightly Stigmatized"],
-    ["Wedding Ruined","Wedding Improved"],["Weird","Normal"],["Wins Friends","Alienates People"],
-    ["Worth the Money","Not Worth It"],["Broadway Hit","Broadway Disaster"],
-    ["Marry","Ghost"],["Survive Zombies","Killed in 10 Mins"],
-    ["Better Star Wars","Worse Star Wars"],["Frame It","Burn It"]
-  ]}
-];
-
-const CUSTOM_STRIPS = [
-  {cat:"Custom: Music",color:"purple",strips:[
+const DECKS = {
+  official: [
+    {cat:"Official: Social",color:"#b07d2e",strips:[
+      ["Ain't Broke","Needs Fixing"],["Alpha Male","Total Beta"],["Amazing Travel","Vacation from Hell"],
+      ["Appropriate","Inappropriate"],["Art","Not Art"],["Awesome Superpower","Crappy Superpower"],
+      ["Basic","Totally Unique"],["Before Sex","After Sex"],["Better on LSD","Worse on LSD"],
+      ["Boomer","Zoomer"],["Brave","Cowardly"],["Call 911","Deal With It"],
+      ["Cause for Concern","No Biggie"],["Cheap Thrill","Profound Experience"],["City","Country"],
+      ["Classy","Trashy"],["Clean","Messy"],["Comfortable","Uncomfortable"],
+      ["Convenient","Inconvenient"],["Cool","Uncool"],["Olympic Sport","Not an Olympic Sport"],
+      ["Viral Video","Total Flop"],["Father Proud","Father Disappointed"],["Feminist","Misogynist"]
+    ]},
+    {cat:"Official: Standards",color:"#0e8c5a",strips:[
+      ["First Date","Year 20 of Marriage"],["First Hour","Last Hour"],["Science Fair Winner","Last Place"],
+      ["Food","Not Food"],["For White People","Not for Them"],["Forgettable","Unforgettable"],
+      ["In Heaven","In Hell"],["Friend","Foe"],["Family Fun","Just Dad Fun"],
+      ["Gay","Straight"],["Good Band Name","Bad Band Name"],["Good CAH Card","Trash Card"],
+      ["Political Win","Political Scandal"],["Good for Marriage","Bad for Marriage"],
+      ["Deeply Awkward","Perfectly Normal"],["Great Business Idea","Bad Business Idea"],
+      ["Thanksgiving Topic","Awkward Silence"],["Excuse for Late","Bad Excuse"],
+      ["Beach Fun","Beach Closed"],["Healthy","Unhealthy"],["Hell Yes","Absolutely Not"],
+      ["Rock Bottom","Best Life"],["Hobby","Career"],["Honorable Death","Shameful Death"]
+    ]},
+    {cat:"Official: Culture",color:"#c0392b",strips:[
+      ["I Was Drunk","I Was High"],["Impressive","Not Impressive"],["Impressive on Resume","Unhirable"],
+      ["Youth","Old Age"],["Innovative","Already Done"],["Jesus Would","Jesus Wouldn't"],
+      ["Kids Love It","Kids Hate It"],["Makes Dog Happy","Makes Spouse Happy"],
+      ["Masculine","Feminine"],["Physical Demand","Emotional Demand"],
+      ["Trending on TikTok","Banned"],["Memory","Regret"],["Drink I'd Order","Drink I'd Avoid"],
+      ["Okay to Joke","Not Okay"],["Order","Chaos"],["Painless","Painful"],
+      ["Pleases God","Angers God"],["Reality TV","Prestige Drama"],["Red Flag","Green Light"],
+      ["Relaxing","Stimulating"],["Romantic","Not Romantic"],["Safe","Dangerous"],
+      ["Scary Costume","Sexy Costume"],["Failure","Success"]
+    ]},
+    {cat:"Official: Life",color:"#7c3aed",strips:[
+      ["Sex","Not Sex"],["Simple","Complicated"],["Small","Big"],["Smart","Dumb"],
+      ["Smells Good","Smells Bad"],["Start of Good Night","Start of Bad Night"],
+      ["Takes Forever","Over Too Soon"],["Joy","Sadness"],["That's Me","Not Me"],
+      ["Comedy Film","Horror Film"],["Trendy","Timeless"],["Trump Claimed","Trump Did"],
+      ["Office Appropriate","Fired"],["Unfair Stigma","Rightly Stigmatized"],
+      ["Wedding Ruined","Wedding Improved"],["Weird","Normal"],["Wins Friends","Alienates People"],
+      ["Worth the Money","Not Worth It"],["Broadway Hit","Broadway Disaster"],
+      ["Marry","Ghost"],["Survive Zombies","Killed in 10 Mins"],
+      ["Better Star Wars","Worse Star Wars"],["Frame It","Burn It"]
+    ]}
+  ],
+  music: [{cat:"Music",color:"#7c3aed",strips:[
     ["David Bowie Would","David Bowie Wouldn't"],["Great Instrument","Awful Instrument"],
     ["Backstage","Thrown Out"],["Bassist Energy","Singer Energy"],
     ["After-Gig Eats","Before-Gig Eats"],["Luxury Tour Bus","Mom's Minivan"],
@@ -146,32 +192,32 @@ const CUSTOM_STRIPS = [
     ["Soulful Crooner","Screaming into the Void"],["Perfect Bass Tone","Wet Cardboard Box"],
     ["Writer's Block","Three Chords"],["Acoustic","Death Metal"],
     ["In Tune","Jazz"],["Demo","Final Mix"],["Stage Presence","Hiding by the Amp"]
-  ]},
-  {cat:"Custom: Transport",color:"blue",strips:[
+  ]}],
+  transport: [{cat:"Transport",color:"#1d6fa4",strips:[
     ["Mean Machine","A Prius"],["Sound Speed","Walking"],["Private Jet","Greyhound"],
     ["Street Legal","Going to Jail"],["Fuel Efficient","Gas Guzzler"],["Comfort","Torture"],
     ["First Class","Cargo Hold"],["Smooth Ride","Death Trap"],
     ["High Tech","Steam-Powered"],["Reliable","Mechanic Required"],
     ["Flying","Deep Sea"],["Aerodynamic","A Brick"],["Respectable","Embarrassing"],
     ["Quiet Engine","Waking the Neighborhood"]
-  ]},
-  {cat:"Custom: Food",color:"teal",strips:[
+  ]}],
+  food: [{cat:"Food",color:"#0e8c5a",strips:[
     ["Taco Topping","Not a Taco Topping"],["Fine Dining","Gas Station Sushi"],
     ["Wagyu","Spam"],["Authentic","Taco Bell"],["Spicy","Plain"],["Sweet","Savory"],
     ["Vegan","Carnivore"],["Gourmet","Technically Edible"],["Health Food","Deep-Fried"],
     ["Fresh Garden","Canned Since 1998"],["Comfort Food","Acquired Taste"],
     ["Street Food","Michelin Star"],["Breakfast","Late-Night Mistake"],
     ["Tastes Like Chicken","Tastes Like Regret"]
-  ]},
-  {cat:"Custom: Politics",color:"blue",strips:[
+  ]}],
+  politics: [{cat:"Politics",color:"#2563eb",strips:[
     ["Democrat","Republican"],["Statesman","Twitter Troll"],["Diplomatic Incident","Peace Treaty"],
     ["Democracy","Anarchy"],["Conspiracy","Truth"],["Grassroots","Lobbying"],
     ["Inauguration","Resignation"],["National Treasure","Public Enemy"],
     ["Revolution","Status Quo"],["Debate Winner","Meme of the Week"],
     ["Campaign Promise","Campaign Memory Loss"],["Tax Break","Audit"],
     ["The Will of the People","The Will of People With Money"]
-  ]},
-  {cat:"Custom: TV & Places",color:"coral",strips:[
+  ]}],
+  tv: [{cat:"TV & Places",color:"#d97706",strips:[
     ["Great Kids Show","Terrible Kids Show"],["Binge-Watched","Turned Off in 10 Minutes"],
     ["HBO Series","Public Access TV"],["Emmy Drama","Trashy Reality"],
     ["Educational","Brain-Rot"],["Live-Action Remake","Original Classic"],
@@ -180,8 +226,8 @@ const CUSTOM_STRIPS = [
     ["Paradise","Tourist Trap"],["Five-Star Hotel","Haunted Motel"],
     ["Great Outdoors","The DMV"],["Home Sweet Home","Literal Hell"],
     ["Peaceful Sanctuary","Construction Zone"],["Front Row","Nosebleed Seats"]
-  ]},
-  {cat:"Custom: Gaming & Tech",color:"gray",strips:[
+  ]}],
+  gaming: [{cat:"Gaming & Tech",color:"#475569",strips:[
     ["Console Peasant","PC Master Race"],["Casual Gamer","Sweaty Tryhard"],
     ["Pay-to-Win","Skill-Based"],["Rage Quit","GG WP"],
     ["Escort Mission","Boss Fight"],["Glitch","Feature"],
@@ -194,8 +240,8 @@ const CUSTOM_STRIPS = [
     ["Side Character","Main Character"],["Tutorial Level","Final Dungeon"],
     ["Noob","Veteran"],["Campers","Rushers"],["Button Masher","Screen Smasher"],
     ["Indie Darling","Triple-A Trash"],["Retro Pixel Art","Hyper-Realistic Graphics"]
-  ]},
-  {cat:"Custom: Domestic & DIY",color:"amber",strips:[
+  ]}],
+  domestic: [{cat:"Home & DIY",color:"#b45309",strips:[
     ["Nailed It","Call a Professional"],["Measure Twice","Eyeball It"],
     ["Duct Tape Fix","Permanent Solution"],["Green Thumb","Plant Serial Killer"],
     ["Perfect Lawn","Overgrown Jungle"],["HOA Violation","Neighborhood Pride"],
@@ -210,8 +256,8 @@ const CUSTOM_STRIPS = [
     ["Squeaky Hinge","WD-40"],["Dog Hair Everywhere","Spotless Floor"],
     ["Pest Control","Adopted the Bug"],["Burnt Toast","Michelin Star Breakfast"],
     ["Dishwasher Safe","Hand Wash Only"],["Woke Up Rested","Slept on My Neck Wrong"]
-  ]},
-  {cat:"Custom: Grab Bag",color:"gray",strips:[
+  ]}],
+  grab: [{cat:"Grab Bag",color:"#64748b",strips:[
     ["TikTok","Myspace"],["HD","Toaster Quality"],["Clickbait","Obvious Scam"],
     ["Grandma Approved","Banned"],["Solid Plan","Winging It"],["Antique","Junk"],
     ["Dry Heat","Swamp Humidity"],["Science","Explosion"],
@@ -240,13 +286,13 @@ const CUSTOM_STRIPS = [
     ["Mid-Life Crisis","Quarter-Life Crisis"],["Passive Aggressive","Direct Confrontation"],
     ["Toxic Trait","Charming Quirk"],["Introvert's Nightmare","Extrovert's Paradise"],
     ["Cancel Culture","Accountability"],["Plot Hole","Brilliant Foreshadowing"],
-    ["Super Villain Origin","Wholesome Moment"],["Cursed Image","Blessed Image"],
-    ["Chaotic Good","Lawful Evil"],["NPC Behavior","Protagonist Energy"],
-    ["Big Brain Move","Smooth Brain Move"],["Existential Dread","Blissful Ignorance"],
-    ["Unspoken Rule","Written Law"],["Public Meltdown","Private Breakdown"],
-    ["Gatekeeping","Welcoming"],["Try Hard","Effortless"],["Too Soon","Perfect Timing"]
-  ]},
-  {cat:"Original Favorites",color:"pink",strips:[
+    ["Cursed Image","Blessed Image"],["Chaotic Good","Lawful Evil"],
+    ["NPC Behavior","Protagonist Energy"],["Big Brain Move","Smooth Brain Move"],
+    ["Existential Dread","Blissful Ignorance"],["Unspoken Rule","Written Law"],
+    ["Public Meltdown","Private Breakdown"],["Gatekeeping","Welcoming"],
+    ["Try Hard","Effortless"],["Too Soon","Perfect Timing"]
+  ]}],
+  favs: [{cat:"Original Favorites",color:"#db2777",strips:[
     ["God's Plan","Satan's Plan"],["Blessed","Cursed"],["Heaven Material","Hell's VIP List"],
     ["Pray About It","Do Not Pray About This"],["Turn the Other Cheek","Throw Hands"],
     ["A Miracle","An Insurance Claim"],["Confession-Worthy","Confession Couldn't Handle It"],
@@ -262,43 +308,37 @@ const CUSTOM_STRIPS = [
     ["Synergy","Cowards Using Big Words"],["Going Above and Beyond","Quietly Resenting Everyone"],
     ["9 to 5","9 to 9 and Still Emailing"],["Fun Team Outing","Mandatory Fun"],
     ["Work-Life Balance","Myth"],["Annual Bonus","Pizza Party"],
-    ["Promotion","Title Change, Same Pay"],["Micromanaged","Macro-Suffering"],
+    ["Promotion","Title Change Same Pay"],["Micromanaged","Macro-Suffering"],
     ["A Balanced Meal","A Snack Plate Pretending"],["The Recipe Says 20 Minutes","Two Hours and a Mess"],
     ["Food Coma","Conscious but Unwilling to Move"],["Ate Like a King","Ate Like a Raccoon"],
-    ["Thriving","Surviving on Vibes"],["Personal Growth","Same Stuff, New Hat"],
+    ["Thriving","Surviving on Vibes"],["Personal Growth","Same Stuff New Hat"],
     ["Self Care","Avoiding Responsibility"],["A New Chapter","The Same Chapter Again"],
     ["Peak Performance","Getting Through the Day"],["Adulting","Adulting Poorly"],
     ["Therapy Breakthrough","Crying in a Parking Lot"],["Journal Entry","Unhinged Notes App Dump"],
     ["Rock Bottom","Comfortable Rock Bottom"],["Main Character Energy","Supporting Role in Own Life"],
     ["Healing Era","Questionable Decisions Era"],["Red Flag in Others","Red Flag You Excuse in Yourself"]
-  ]}
-];
-
-const colors = {
-  purple:{bg:'#EEEDFE',text:'#3C3489'},amber:{bg:'#FAEEDA',text:'#854F0B'},
-  pink:{bg:'#FBEAF0',text:'#72243E'},blue:{bg:'#E6F1FB',text:'#0C447C'},
-  teal:{bg:'#E1F5EE',text:'#085041'},coral:{bg:'#FAECE7',text:'#993C1D'},
-  gray:{bg:'#F1EFE8',text:'#444441'},green:{bg:'#EAF3DE',text:'#27500A'},
-  red:{bg:'#FCEBEB',text:'#791F1F'}
+  ]}]
 };
 
+const seen = {};
 let drawCount = 0;
-const seen = {official: new Set(), custom: new Set()};
 
-function draw(type) {
-  const deck = type === 'official' ? OFFICIAL_STRIPS : CUSTOM_STRIPS;
+function draw(deckKey) {
+  const cats = DECKS[deckKey];
+  if (!seen[deckKey]) seen[deckKey] = new Set();
   const flat = [];
-  deck.forEach((cat, ci) => cat.strips.forEach((strip, si) => flat.push({ci, si})));
-  let pool = flat.filter(x => !seen[type].has(x.ci+','+x.si));
-  if (pool.length === 0) { seen[type].clear(); pool = flat; }
+  cats.forEach((cat, ci) => cat.strips.forEach((strip, si) => flat.push({ci, si})));
+  let pool = flat.filter(x => !seen[deckKey].has(x.ci+','+x.si));
+  if (pool.length === 0) { seen[deckKey].clear(); pool = flat; }
   const pick = pool[Math.floor(Math.random() * pool.length)];
-  seen[type].add(pick.ci+','+pick.si);
-  const cat = deck[pick.ci];
+  seen[deckKey].add(pick.ci+','+pick.si);
+  const cat = cats[pick.ci];
   const strip = cat.strips[pick.si];
-  const c = colors[cat.color] || colors.gray;
   drawCount++;
+
+  // badge with the cat's own color
   document.getElementById('badge-row').innerHTML =
-    `<span class="category-badge" style="background:${c.bg};color:${c.text}">${cat.cat}</span>`;
+    `<span class="category-badge" style="background:${cat.color}22;color:${cat.color};border:1px solid ${cat.color}55">${cat.cat}</span>`;
   document.getElementById('strip-container').innerHTML = `
     <div class="strip-row">
       <span class="label">${strip[0]}</span>
@@ -306,7 +346,7 @@ function draw(type) {
       <span class="label">${strip[1]}</span>
     </div>`;
   document.getElementById('counter').textContent =
-    `Total drawn: ${drawCount} | ${type.toUpperCase()} pool remaining: ${pool.length - 1}`;
+    `Total drawn: ${drawCount} | ${cat.cat} remaining: ${pool.length - 1}`;
 }
 </script>
 </body>
